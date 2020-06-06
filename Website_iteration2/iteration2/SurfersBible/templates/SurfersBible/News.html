@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'SurfersBible/fixedcontent.html' %}
+
+{% block title %}
+		SurferSense - News
+{% endblock %}
+
+{% block content %}
+	<br><br><br><br><br>
+  <div class="map-clean">
+      <div class="container" style="background-color: #ffffff;">
+          <div class="intro">
+              <h2 class="text-center" style="color: rgb(10,72,133);">Surfing News&nbsp;</h2>
+              <!-- <p class="text-center"></p> -->
+          </div>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- <a class="navbar-brand" href="#">All surfing news</a> -->
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
+              <!-- <span class="navbar-toggler-icon"></span> -->
+            <!-- </button> -->
+
+            <div class="navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+                  <a class="nav-link" href="news">All Surfing News <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="sharknews">Shark Attack <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="jellyfishnews">Jelly Fish Incidents<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="ripcurrentnews">Rip Current Incidents<span class="sr-only"></span></a>
+                </li>
+					<li class="nav-item">
+					  <a class="nav-link" href="surfingnewsaustralia">Surfing News Australia<span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item">
+                  <a class="nav-link" href="surfingcompetitionnews">Surfing Competition News<span class="sr-only"></span></a>
+					</li>
+					
+              </ul>
+
+            </div>
+          </nav><br>
+      </div>
+  </div>
+  <section class="clean-block clean-blog-list dark" style="background-color: rgb(254,254,254);">
+
+          <div></div>
+          <div></div>
+          <div></div>
+{% for news in allnews %}
+<section class="container">
+<div class="card mb-3" style="max-width: 1140px;">
+<div class="row no-gutters">
+  <div class="col-md-4">
+    <img src="{{ news.urltoimage }}" class="card-img" alt="...">
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+    <a href="{{ news.url }}"><h5 class="card-title">{{news.title}}</h5></a>
+      <p class="card-text">
+{{news.description}}</p>
+      <p class="card-text"><small class="text-muted">{{news.publishedat}}</small></p>
+    </div>
+  </div>
+</div>
+</section>
+{% endfor %}
+</section>
+
+{% endblock %}

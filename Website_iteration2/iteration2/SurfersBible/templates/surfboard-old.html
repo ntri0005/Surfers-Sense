@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	{% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register - Brand</title>
+    <link rel="stylesheet" href="{%static 'SurfersBible/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akronim">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allura">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="{%static 'SurfersBible/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Articale-List-With-Image-Zoom.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Article-Cards.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Article-List.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/best-carousel-slide.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Bold-BS4-CSS-Image-Slider.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/card-3-column-animation-shadows-images.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Card-slider-sk.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Contact-Form-v2-Modal--Full-with-Google-Map.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Map-Clean.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Mega-Menu-Dropdown-100-Editable---Ambrodu.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Navbar-Fixed-Side.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Pretty-Footer.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/smoothproducts.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Swiper-Slider-Card-For-Blog-Or-Product-1.css' %}">
+    <link rel="stylesheet" href="{%static 'SurfersBible/css/Swiper-Slider-Card-For-Blog-Or-Product.css' %}">
+
+
+    <style>
+
+
+    /* The Modal (background) */
+    .modal {
+  display: none; /* Hidden by default */
+  position: center; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: blue; /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #blue;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-sm fixed-top bg-white text-monospace clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="/Users/xiejia/Desktop/v2 /index.html" style="color: rgba(13,75,132,0.9);font-family: Aclonica, sans-serif;"><strong>SURFERS' BIBLE</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="/Users/xiejia/Desktop/v2 /explorebeach.html" style="color: rgba(13,75,132,0.9);">eXPLORE BEACH</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/Users/xiejia/Desktop/v2 /emergencyservice.html" style="color: rgba(13,75,132,0.9);">eMERGENCY sERVICE</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgba(13,75,132,0.9);">oTHER sUPPORT&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/Users/xiejia/Desktop/v2 /surfboard.html">Surfing GuildLline</a></div>
+                    </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <main class="page registration-page" style="box-sizing: inherit;">
+        <section class="clean-block clean-form dark" style="background-image: url({% static 'SurfersBible/images/banner.jpg' %});">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info" style="color: rgb(200,205,208);">How to choose your board ?&nbsp;</h2>
+                    <p>If you are inexperience surfer, Please reference the size based on your body condition.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal1">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+        </section>
+    </main>
+    <div>
+        <div class="container-fluid">
+            <h1></h1>
+            <hr>
+            <!-- <form id="contactForm" action="javascript:void(0);" method="get"><input class="form-control" type="hidden" name="Introduction" value="This email was sent from www.awebsite.com"><input class="form-control" type="hidden" name="subject" value="Awebsite.com Contact Form"><input class="form-control" type="hidden" -->
+                    <!-- name="to" value="email@awebsite.com"> -->
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div id="successfail"></div>
+                    </div>
+                </div>
+                <div class=" row">
+                    <div class="col-12 col-md-6" id="message">
+                        <h2 class="h4"><i class="fa fa-info" style="color: rgb(174,11,11);"></i>&nbsp; To Get Your Surfboard Size&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small>
+                        </h2>
+                        <div class="form-group"><label for="from-name" style="color: rgb(12,65,119);">WEIGHT</label><span class="required-input"></span><select class="form-control" id="from-calltime" name="call time"><optgroup label="Weightt"><option value="35 &amp; Under" selected="">35&amp;under</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option><option value="60">60</option><option value="65">65</option><option value="70">70</option><option value="75">75</option><option value="80">80</option><option value="85">85</option><option value="90">90</option><option value="95">95</option><option value="100">100</option><option value="105">105</option><option value="110">110</option><option value=""></option></optgroup></select>
+                            <label
+                                for="from-email" style="color: rgb(12,65,119);">FITNESS LEVEL</label><select class="form-control" id="from-calltime-1" name="call time"><optgroup label="FITNESS"><option value="Excellent" selected="">Excellent- Surfing 4 times   per week or other training 4 times per week</option><option value="Good">Good- Surfing 3   times per week or other training 3 times per week</option><option value="Average">Average-   Surfing 2 times per week or other training 2 times per week</option><option value="Poor">Poor- Surfing 1   times per week or other training 1 times per week</option></optgroup></select>
+                                <label
+                                    for="from-email" style="color: rgb(12,65,119);">SURFING FREQUENCE</label><select class="form-control" id="from-calltime-3" name="call time"><optgroup label="Frequence"><option value="less than 2 days" selected="">Less than 2 days per week</option><option value="more than 2 days">More than 2 days per week</option></optgroup></select>
+                                    <label
+                                        for="from-email" style="color: rgb(12,65,119);">SKILL</label><select class="form-control" id="from-calltime-2" name="call time"><optgroup label="Skill"><option value="Advance +" selected="">Advanced + :Capable of making critical manoeuvres with total control, power, and speed.</option><option value="Advance">Advance :Capable of completing complex manoeuvres with confidence, control, and consistency.</option><option value="Intermediate">Intermediate :Capable of linking moves whilst having confidence and understanding of each condition.</option><option value="Beginner">Beginner:  You are first timers, learning to stand, focusing on wave count and have basic skills.</option></optgroup></select>
+                                        <label
+                                            for="from-email" style="color: rgb(12,65,119);">AGE</label><select class="form-control" id="from-calltime-4" name="call time"><optgroup label="Age"><option value="0 - 30" selected="">0-30</option><option value="31 - 50">31-50</option><option value="51 - 60">51-60</option><option value="61+">61+</option></optgroup></select>
+                                            <!-- <label -->
+                                                <!-- for="from-phone" style="color: rgb(12,65,119);">Height</label><input class="form-control" type="text" id="from-phone" name="phone" required="" placeholder="Your Height"> -->
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend"></div>
+                                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                      <!--          <div class="col"><button class="btn btn-primary btn-block" type="reset"><i class="fa fa-undo"></i> Reset</button></div>
+    <div class="col"><button class="btn btn-primary btn-block" type="submit">Submit <i class="fa fa-chevron-circle-right"></i></button></div>-->
+
+
+  </div>
+
+  </div>
+
+                        <hr class="d-flex d-md-none">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <!-- <div class="form-row"> -->
+                            <!-- <div class="col-12 col-sm-6 col-md-12 col-lg-6"> -->
+                                <h2 class="h4"><i class="fa fa-star-o" style="color: rgb(174,11,11);"></i> Tips</h2>
+                                <!-- <div></div> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+						<label for="from-comments" style="color: rgb(140,142,145);">Choosing the right surfboard is one of the most, if not the most important purchasing decision you’ll make when it comes to an enjoyable wave ride.Whether you’re a complete beginner learning to surf, beginner intermediate or ready to break out in the pro scene. Understanding the fundamentals behind board design, sizing, shape is important. The engineering that goes behind board design is invaluable information. You’ll never truly know what a board suited for you really feels like.<button id="myBtn" style="color:red;">
+                        Click Here To Get Board Size</button>
+                        <div id="myModal" class="modal">
+
+                          <!-- Modal content -->
+                          <div class="modal-content" id="dynamic">
+                            <span class="close">&times;</span>
+                            <!-- <p>Some text in the Modal..</p> -->
+                          </div>
+                        </div></label></div>
+
+                </div>
+
+
+                <!-- The Modal -->
+
+
+            <!-- </form> -->
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="modal1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+								
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+    <section></section><section class="container p-t-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1><span style="color: crimson">Check Your</span> Equipments Before Surfing</h1>
+        </div>
+    </div>
+</section>
+<section class="carousel slide" data-ride="carousel" id="postsCarousel">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-right mb-4">
+                <a class="btn btn-outline-secondary prev" href="" title="go back"><i class="fa fa-lg fa-chevron-left"></i></a>
+                <a class="btn btn-outline-secondary next" href="" title="more"><i class="fa fa-lg fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container p-t-0 m-t-2 carousel-inner">
+        <div class="row row-equal carousel-item active m-t-0">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="{% static 'SurfersBible/images/wetsuit.png' %}" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <div class="card-header"><h3>Surfing Wetsuit</h3></div>
+                        <div class="card-text">A wetsuit keeps you warm by trapping a thin layer of water between your skin and the neoprene. Your body heats this water up, and your wetsuit prevents this water from leaving the suit and any more water from entering. Neoprene also does a great job at blocking wind, so any wind chill factor is cut down significantly.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="{% static 'SurfersBible/images/leash.png' %}" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <div class="card-header"><h3>Leash</h3></div>
+                        <div class="card-text">Leash has an ample amount of stretch to give the surfer some freedom yet absorbs the force attributed from waves. This combination significantly reduces the chance of the surfboard stretching far away then snapping forcefully back towards the user.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="{% static 'SurfersBible/images/666.png' %}" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <div class="card-header"><h3>Fins</h3></div>
+                        <div class="card-text">The toe or splay of a surf fin is defined as the angle of the side fins in relation to the board's central stringer. Side fins are typically referred to as “toed-in,” with the front of the fin angled towards the middle of the board. This causes water to pressure the outside of the fins, for increased responsiveness.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row row-equal carousel-item m-t-0">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="{% static 'SurfersBible/images/wax.png' %}" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <div class="card-header"><h3>Surfing Wax</h3></div>
+                        <div class="card-text">Surfboard wax (also known as surfwax) is a formulation of natural and/or synthetic wax for application to the deck of a surfboard, bodyboard, or skimboard, to keep the surfer from slipping off the board when paddling out or riding a wave. It is also used to increase grip on the paddle of a surf kayak or dragon boat.</div>
+                    </div>
+                </div>
+            </div>
+           <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="{% static 'SurfersBible/images/444.png' %}" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <div class="card-header"><h3>Ear Plug</h3></div>
+                        <div class="card-text">Ear plugs for surfing prevent water-induced ear infections known as Swimmer's Ear (Otitis Externa). Also available are Surfers’ Headbands, which work well with a pair of Putty Buddies and are highly recommended for keeping your surfers ear plugs in!</div>
+                    </div>
+                </div>
+            </div>
+           <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-top card-img-top-250">
+                        <img class="img-fluid" src="{% static 'SurfersBible/images/Suncream.png' %}" alt="Carousel 1">
+                    </div>
+                    <div class="card-block p-t-2">
+                        <div class="card-header"><h3>Suncream</h3></div>
+                        <div class="card-text"> Skin cancer is no joke and you need to do your best to avoid it. But the sun does more than just increase your risk of developing skin cancer, it also speeds up the appearance of wrinkles, causes skin discoloration and various other things. </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer style="background-color: rgba(13,75,132,0.9);">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 footer-navigation">
+            <h3><a href="/Users/xiejia/Desktop/v2 /index.html">Aqua<span style="color: rgb(15,13,147);">Wizards</span></a></h3>
+            <p class="company-name">AquaWizards © 2020</p>
+        </div>
+        <div class="col-sm-6 col-md-4 footer-contacts">
+            <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
+                <p> Melbourne, Australia</p>
+            </div>
+            <div><i class="fa fa-envelope footer-contacts-icon"></i>
+                <p> <a href="/Users/xiejia/Desktop/v2 /contact-us.html" target="_blank" style="color: rgb(233,233,239);">AquaWizards@gmail.com&nbsp;</a></p>
+                <p class="company-name"></p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-4 footer-about">
+            <h4>About Us</h4>
+            <p style="color: rgb(234,237,239);"> The project team “Aqua Wizards” is a professional website development team founded by a group of students who are motivated to create innovative technology products to deal with issues of water injury and committed to reducing 10% surfing
+                injury or accident in Australia per year. </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+var s_length = 0;
+var s_width = 0;
+var s_thickness = 0;
+var vol = 1;
+var weight = document.getElementById("from-calltime");
+var re_weight = weight.options[weight.selectedIndex].value;
+var fitness = document.getElementById("from-calltime-1");
+var re_fitness = fitness.options[fitness.selectedIndex].value;
+var frequency = document.getElementById("from-calltime-3");
+var re_frequency = frequency.options[frequency.selectedIndex].value;
+var skill = document.getElementById("from-calltime-2");
+var re_skill = skill.options[skill.selectedIndex].value;
+var age = document.getElementById("from-calltime-4");
+var re_age = age.options[age.selectedIndex].value;	
+<!-- var height = document.getElementById("from-phone"); -->
+<!-- var re_height = height.options[height.selectedIndex].value;											 -->
+var weight_data = JSON.parse("{{ weight|escapejs }}")
+var age_data = JSON.parse("{{ age|escapejs }}")
+var fitness_data = JSON.parse("{{ fitness|escapejs }}")
+var board_data = JSON.parse("{{ surfboard|escapejs }}")
+for (var key in weight_data){
+	<!-- console.log(weight_data[key]["Weight (Kg)"]); -->
+	<!-- console.log(weight_data[key]["Weight (Kg)"]) -->
+	<!-- console.log(re_weight); -->
+	if(weight_data[key]["Weight (Kg)"]===re_weight){
+		<!-- console.log("here"); -->
+		for(var a in weight_data[key]){
+			if (a===re_skill){
+			<!-- console.log(weight_data[key][a]); -->
+			vol = vol * weight_data[key][a];
+			<!-- console.log(vol) -->
+			}
+		}
+	}
+}
+for (var key in age_data){
+	<!-- console.log(age_data[key]) -->
+	if(age_data[key]["Age"]===re_age){
+		<!-- console.log(vol); -->
+		vol = vol * age_data[key]["Factor"];
+		<!-- console.log(vol); -->
+	}
+}
+
+for (var key in fitness_data){
+	<!-- console.log(fitness_data[key]); -->
+	if (fitness_data[key]['fitness_level']===re_fitness){
+		<!-- console.log(vol); -->
+		vol = vol * fitness_data[key]["Factor"];
+		<!-- console.log(vol); -->
+	}
+}
+for (var key in board_data){
+	console.log(board_data[key])
+	if ((board_data[key]["Surfing_Frequency"]===re_frequency) && (board_data[key]["Surfer Weight (kg)"]===re_weight)){
+		console.log("inside if")
+		s_length = board_data[key]["Surfboard Length"];
+		s_width = board_data[key]["Surfboard Width"];
+		s_thickness = board_data[key]["Surfboard Thickness"];
+		console.log(s_length);
+		console.log(s_width);
+		console.log(s_thickness);
+	}
+}
+<!-- console.log(weight_data); -->
+
+<!-- console.log(re_fitness); -->
+<!-- console.log(re_frequency); -->
+<!-- console.log(re_skill); -->
+<!-- console.log(re_age); -->
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  var vol_display = "";
+  if ( vol >= 14 &&  vol < 16){
+	vol_display = "14 - 16";
+  }
+  else if ( vol >= 16 &&  vol < 18){
+	vol_display = "16 - 18";
+  }
+  else if ( vol >= 18 &&  vol < 20){
+	vol_display = "18 - 20";
+  }
+  else if ( vol >= 20 &&  vol < 22 ){
+	vol_display = "20 - 22";
+  }
+  else if ( vol >= 22 &&  vol < 24){
+	vol_display = "22 - 24";
+  }
+  else if ( vol >= 24 &&  vol < 26){
+	vol_display = "24 - 26";
+  }
+  else if ( vol >= 26 &&  vol < 28){
+	vol_display = "26 - 28";
+  }
+  else if ( vol >= 28 &&  vol < 30){
+	vol_display = "28 - 30";
+  }
+  else if ( vol >= 30 &&  vol < 35){
+	vol_display = "30 - 35";
+  }
+  else if ( vol >= 35 &&  vol < 40){
+	vol_display = "35 - 40";
+  }
+  else if ( vol >= 40 &&  vol < 45){
+	vol_display = "40 - 45";
+  }
+  else if ( vol >= 45 &&  vol < 50){
+	vol_display = "45 - 50";
+  }
+  else if ( vol >= 50 &&  vol < 55){
+	vol_display = "50 - 55";
+  }
+  else if ( vol >= 55 &&  vol < 60){
+	vol_display = "55 - 60";
+  }
+  else if ( vol >= 60 &&  vol < 65){
+	vol_display = "60 - 65";
+  }
+  else if ( vol >= 65 &&  vol < 70){
+	vol_display = "65 - 70";
+  }
+  else if ( vol >= 70 &&  vol < 75){
+	vol_display = "70 - 75";
+  }
+  else if ( vol >= 75 &&  vol < 80){
+	vol_display = "75 - 80";
+  }
+  var strvol = "We recommened you to use a surfboard which is in the volume range of " + vol_display + " litres. " ;
+  var strlength ="Recommended length of the baord " + s_length + " inches";
+  var strwidth ="Recommended width of the baord " + s_width + " inches";
+  var strthickness ="Recommended thickness of the baord " + s_thickness + " inches";
+  console.log(strvol);
+  
+  modal.style.display = "block";
+  <!-- modal.innerHTML = strre; -->
+  document.getElementById("dynamic").innerHTML = strvol + "<br />" + strlength + "<br />" + strwidth + "<br />" + strthickness;
+  
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+    <script src="{%static 'SurfersBible/js/jquery.min.js' %}"></script>
+    <script src="{%static 'SurfersBible/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/smart-forms.min.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/chart.min.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/bs-init.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="{%static 'SurfersBible/js/smoothproducts.min.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/theme.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/Card-slider-sk.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/Contact-Form-v2-Modal--Full-with-Google-Map.js' %}"></script>
+    <script src="{%static 'SurfersBible/js/Swiper-Slider-Card-For-Blog-Or-Product.js' %}"></script>
+</body>
+
+</html>

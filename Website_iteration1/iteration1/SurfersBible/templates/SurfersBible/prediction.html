@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Saleable
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20131118
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Explored</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<!-- <link href="{% static 'SurfersBible/css/default.css' %}" rel="stylesheet" type="text/css" media="all" /> -->
+<link href="{% static 'SurfersBible/css/fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'SurfersBible/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'SurfersBible/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'SurfersBible/css/bootstrap.min.css' %}">
+<style>
+	table {
+	 border-collapse:separate;
+		border:solid lightgray 1px;
+		border-radius:6px;
+		-moz-border-radius:6px;
+	}
+
+	th, td {
+	  text-align: left;
+	  padding: 8px;
+	}
+
+	tr:nth-child(even){background-color: #f2f2f2}
+
+	th {
+	  background-color: #4795cc;
+	  color: white;
+	  text-color: white;
+	}
+</style>
+<script src="{% static 'SurfersBible/js/jquery.min.js' %}"></script> 
+<script src="{% static 'SurfersBible/js/bootstrap.min.js' %}"></script> 
+<script src="{% static 'SurfersBible/js/skel.min.js' %}"></script> 
+<script src="{% static 'SurfersBible/js/util.js' %}"></script> 
+<script src="{% static 'SurfersBible/js/main.js' %}"></script> 
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<script type="text/javascript">
+	window.onload = window.onresize = function(){
+		
+		d3.selectAll('svg').remove();
+		var attack_data = JSON.parse("{{ attack|escapejs }}");
+		var data = [];
+		for (var key in attack_data) {
+			if (attack_data.hasOwnProperty(key)) {
+				data.push(attack_data[key]);
+			}
+		}
+		console.log(attack_data);
+		console.log(data);
+		var attackchart = function(){
+			var chartDiv = document.getElementById("attackChart");
+			var margin = {top: 10, right: 40, bottom: 100, left: 40},
+			width = chartDiv.clientWidth - margin.left - margin.right,
+			height = chartDiv.clientHeight - margin.top - margin.bottom;
+			<!-- width = 350 - margin.left - margin.right, -->
+			<!-- height = 300 - margin.top - margin.bottom; -->
+		// append the svg object to the body of the page
+			var svg = d3.select("#attackChart")
+			  .append("svg")
+				.attr("width", width + margin.left + margin.right )
+				.attr("height", height + margin.top + margin.bottom )
+			  .append("g")
+				.attr("transform",
+					  "translate(" + margin.left + "," + margin.top + ")");
+			 
+			var x = d3.scaleTime()
+		  .domain(d3.extent(data, function(d) { return d3.timeParse("%Y-%m-%d")(d.date); }))
+		  .range([ 0, width ]);
+		svg.append("g")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(d3.axisBottom(x))
+		  .selectAll("text")
+			.attr("transform", "translate(-10,0)rotate(-45)")
+			.style("text-anchor", "end");
+		// Add Y axis
+		var y = d3.scaleLinear()
+		  .domain(d3.extent(data, function(d) { return d.percentage;}))
+		  .range([ height, 0 ]);
+		svg.append("g")
+		  .call(d3.axisLeft(y));
+
+		// Add the line
+		svg.append("path")
+		  .datum(data)
+		  .attr("fill", "none")
+		  .attr("stroke", "#4795cc")
+		  .attr("stroke-width", 1.5)
+		  .attr("d", d3.line()
+			.x(function(d) { return x(d3.timeParse("%Y-%m-%d")(d.date)) })
+			.y(function(d) { return y(d.percentage) })
+			)
+
+		// create a tooltip
+		var Tooltip = d3.select("#attackChart")
+		  .append("div")
+		  .style("opacity", 0)
+		  .attr("class", "tooltip")
+		  .style("background-color", "white")
+		  .style("border", "solid")
+		  .style("border-width", "2px")
+		  .style("border-radius", "5px")
+		  .style("border-color", "#4795cc")
+		  .style("padding", "2px")
+
+		  // Three function that change the tooltip when user hover / move / leave a cell
+		  var mouseover = function(d) {
+			Tooltip
+			  .style("opacity", 1)
+		  }
+		  var mousemove = function(d) {
+			Tooltip
+			  .html("Shark Attack Percentage: " + d.percentage)
+			  .style("left", (d3.mouse(this)[0]-10) + "px")
+			  .style("top", (d3.mouse(this)[1]+10) + "px")
+		  }
+		  var mouseleave = function(d) {
+			Tooltip
+			  .style("opacity", 0)
+		  }
+
+
+		// Add the points
+		svg
+		  .append("g")
+		  .selectAll("dot")
+		  .data(data)
+		  .enter()
+		  .append("circle")
+			.attr("class", "myCircle")
+			.attr("cx", function(d) { return x(d3.timeParse("%Y-%m-%d")(d.date)) } )
+			.attr("cy", function(d) { return y(d.percentage) } )
+			.attr("r", 5)
+			.attr("fill", "#4795cc")
+			.on("mouseover", mouseover)
+			.on("mousemove", mousemove)
+			.on("mouseleave", mouseleave)
+	}	
+	// -----------------------------------------------Shark Trend-------------------------------------
+	var sharktrend = function(){
+		var chartDiv = document.getElementById("trendChart");
+			var margin = {top: 10, right: 40, bottom: 100, left: 40},
+			width = chartDiv.clientWidth - margin.left - margin.right,
+			height = chartDiv.clientHeight - margin.top - margin.bottom;
+			  
+		// append the svg object to the body of the page
+		var svg = d3.select("#trendChart")
+		  .append("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+			.attr("transform",
+				  "translate(" + margin.left + "," + margin.top + ")");
+
+		// Parse the Data
+		
+		// X axis
+		var x = d3.scaleTime()
+		  .range([ 0, width ])
+		  .domain(d3.extent(data, function(d) { return d3.timeParse("%Y-%m-%d")(d.date); }))
+		  <!-- .padding(0.2); -->
+		svg.append("g")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(d3.axisBottom(x))
+		  .selectAll("text")
+			.attr("transform", "translate(-10,0)rotate(-45)")
+			.style("text-anchor", "end");
+
+		// Add Y axis
+		var y = d3.scaleLinear()
+		  .domain([0,100])
+		  .range([ height, 0]);
+		svg.append("g")
+		  .call(d3.axisLeft(y));
+		
+		// create a tooltip
+		var Tooltip = d3.select("#trendChart")
+		  .append("div")
+		  .style("opacity", 0)
+		  .attr("class", "tooltip")
+		  .style("background-color", "white")
+		  .style("border", "solid")
+		  .style("border-width", "2px")
+		  .style("border-radius", "5px")
+		  .style("border-color", "#4795cc")
+		  .style("padding", "2px")
+
+		  // Three function that change the tooltip when user hover / move / leave a cell
+		  var mouseover = function(d) {
+			Tooltip
+			  .style("opacity", 1)
+		  }
+		  var mousemove = function(d) {
+			Tooltip
+			  .html("Shark Attack Percentage: " + d.SightingPercentage)
+			  .style("left", (d3.mouse(this)[0]-10) + "px")
+			  .style("top", (d3.mouse(this)[1]+10) + "px")
+		  }
+		  var mouseleave = function(d) {
+			Tooltip
+			  .style("opacity", 0)
+		  }
+
+		// Bars
+		svg.selectAll("mybar")
+		  .data(data)
+		  .enter()
+		  .append("rect")
+			.attr("x", function(d) { return x(d3.timeParse("%Y-%m-%d")(d.date)); })
+			.attr("y", function(d) { return y(d.SightingPercentage); })
+			.attr("width", 7)
+			.attr("height", function(d) { return height - y(d.SightingPercentage); })
+			.attr("fill", "#4795cc")
+			.on("mouseover", mouseover)
+			.on("mousemove", mousemove)
+			.on("mouseleave", mouseleave)
+
+
+	}
+	attackchart();
+	sharktrend();
+	
+}
+</script>
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+	</head>
+	<body>
+	<!-- {} -->
+	<header id="header">
+        <div class="inner">
+          <a href="index" class="logo">SURFERS' BIBLE</a>
+          <nav id="nav">
+            <a href="index">Home</a>
+            <a href="shark">Explore Safe Beaches</a>
+            
+        </div>
+      </header>
+      <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+	  
+		<div style="align-content: center;"><br/><br/>
+			{% for b in beach %}
+			<p style="text-align: center; font-size: 2em;">You have selected {{b.beach_name}}</p>
+			{% endfor %}
+			<br/><br/>
+		</div>
+		<br/><br/>
+<!-- <div id="banner-wrapper" style="background-image: url({% static 'SurfersBible/images/bg01.jpg' %}); overflow: hidden; padding: 10em 0em 10em 0em;  -->
+		<!-- background-size: 100% auto;"> -->
+<!-- </div> -->
+			<!-- <div class="container" style="padding: 20px;"> -->
+				<!-- <div class="row"> -->
+					<!-- <div class="mix col-lg-4 col-md-6 col-sm-12 " data-my-order="1"> -->
+						<!-- <h3>ATTACK RISK</h3> -->
+						<!-- <p><img src="{%static 'SurfersBible/images/pic25.jpg' %}" alt="" class="image image-left" /> 20 % probiblity of shark attck based on shark prediction</p> -->
+					<!-- </div> -->
+					<!-- <div class="mix col-lg-4 col-md-6 col-sm-12  " data-my-order="1"> -->
+						<!-- <h3>Shark Attack History</h3> -->
+						<!-- <p><img src="{%static 'SurfersBible/images/pic26.jpg' %}" alt="" class="image image-left" />200 people got shark accident on 2019</p> -->
+					<!-- </div> -->
+					<!-- <div class="mix col-lg-4 col-md-4 col-sm-12 " data-my-order="1"> -->
+						<!-- <h3>Shark Sighting</h3> -->
+						<!-- <p><img src="{% static 'SurfersBible/images/pic25.jpg' %}" alt="" class="image image-left" />47% probiblity of shark movement </p> -->
+					<!-- </div> -->
+				<!-- </div> -->
+			<!-- </div> -->
+			
+			<div class="container">
+				<div class="row">
+					<div id="attackChart" class="mix col-lg-6 col-md-6 col-sm-12 col-xs-12 all" style= "height : 400px" >
+						<h3 style="text-align: center;">Shark Attack Prediction</h3>
+						<!-- <div id="attacktooltip"></div> -->
+						<!-- <svg></svg> -->
+						<!-- <img src="/Users/xiejia/Desktop/finally /attackDetail/images/pic00.png" width="300px" height="300px"> -->
+							<!-- <!--<a href="#" class="button">Etiam posuere</a> --> 
+					</div>
+					<div id = "trendChart" class="mix col-lg-6 col-md-6 col-sm-12 col-xs-12 all" data-my-order="1" style= "height : 400px">
+						<h3 style="text-align: center;"> Shark Presence Prediction</h3>
+						<!-- <img src="/Users/xiejia/Desktop/finally /attackDetail/images/pic2.jpg" width="300px" height="300px"> -->
+							<!--<a href="#" class="button">Etiam posuere</a> -->
+					</div>
+					</div>
+					<div class="row">
+					<div class="mix col-lg-12 col-md-12 col-sm-12 col-xs-12 all" data-my-order="1"style= "overflow-x:auto; height : 400px">
+						<h3 style="text-align: center;"> Hospitals </h3>
+							<table>
+							  <tr>
+								<th>Hospital Name</th>
+								<th>Emergency Efficiency</th>
+								<th>Urgent Efficiency</th>
+								<th>Semi-Urgent Efficiency</th>
+								<th>Non-Urgent Efficiency</th>
+								<th>Distance</th>
+							  </tr>
+							  {% for hospital in hospitals %}
+								  <tr>
+									<td>{{hospital.hospital_name}}</td>
+									<td>{{hospital.emergency_cohort_percent_patient_seen_on_time}}</td>
+									<td>{{hospital.urgent_cohort_percent_patient_seen_on_time}}</td>
+									<td>{{hospital.semi_urgent_cohort_percent_patient_seen_on_time}}</td>
+									<td>{{hospital.non_urgent_cohort_percent_patient_seen_on_time}}</td>
+									<td>{{hospital.beach_hospital_distance_km}}
+								  </tr>
+							  {% endfor %}
+							</table>
+							<p style="text-align: center; font-size:0.7em;"> *Efficency: Percentage of patients seen on time by hospital in the past.</p>
+							<!-- <img src="/Users/xiejia/Desktop/finally /attackDetail/images/pic3.jpg"  width="300px" height="300px"> -->
+						<!--<a href="#" class="button">Etiam posuere</a> -->
+					</div>
+				</div>
+			</div>
+
+<div style="align-content: center; margin: 0; position: absolute; top: 50%; left: 50%; padding-top: 12%; -ms-transform: translateX(-50%); transform: translateX(-50%);"><br/><br/>
+	{% for b in beach %}
+	<button><a href="http://maps.google.co.uk/maps?daddr={{ b.latitude }},{{ b.longitude }}"type="button" class="btn btn-link" style="color:white;">Navigate to Beach{{ predict.shark_attack_percentage }}</a></button>
+	{% endfor %}
+<br/><br/></div>
+<br/><br/>
+<div id="footer-wrapper">
+	<div  class="container" style="background-color: grey;">
+	<div class="row">
+		<div class="mix col-lg-6 col-md-6 col-sm-6 all category-1">
+			<h2>Shark News</h2>
+			<ul class="style3">
+				<li class="first">
+					<p class="date" style="background-color:#4795cc; margin-left:10px;"><a href="#">Apr<b>21</b></a></p>
+					<h3>shark attack at Crescent Head</h3>
+					<p style="padding-left:10px;"><a href="https://www.macleayargus.com.au/story/6729867/woman-left-with-lacerations-to-her-foot-from-shark-attack-at-crescent-head/">Crescent Head main beach will be closed for the next 24 hours </a></p>
+				</li>
+				<li>
+					<p class="date" style="background-color:#4795cc; margin-left:10px;"><a href="#">April<b>20</b></a></p>
+					<h3>Shark attack news & alerts</h3>
+					<p style="padding-left:10px;"><a href="https://www.9news.com.au/shark-attack">This is a news collection page about shark attacks. </a></p>
+				</li>
+				<li>
+					<p class="date" style="background-color:#4795cc; margin-left:10px;"><a href="#">April<b>06</b></a></p>
+					<h3>Shark Attack In Queensland</h3>
+					<p style="padding-left:10px;"><a href="https://www.abc.net.au/news/2020-04-06/shark-attack-man-dies-from-injuries-north-west-island-queensland/12127124">Man dies after shark attack </a></p>
+				</li>
+			</ul>
+		</div>
+		<div class="mix col-lg-6 col-md-6 col-sm-6 all category-1">
+			<h2>How To Reduce Shark Accident</h2>
+			<p style="color : white">Please <strong>Check our website</strong> before your every plan </p>
+			<ul class="style1">
+				<li style="padding: 10px 10px 10px 10px"><img src="{% static 'SurfersBible/images/shark1.jpg' %}" width="180" height="120" alt="" /></li>
+				<li style="padding: 10px 10px 10px 10px"><img src="{% static 'SurfersBible/images/shark2.jpg' %}" width="180" height="120" alt="" /></li>
+				<li style="padding: 10px 10px 10px 10px"><img src="{% static 'SurfersBible/images/shark3.jpg' %}" width="180" height="120" alt="" /></li>
+				<li style="padding: 10px 10px 10px 10px"><img src="{% static 'SurfersBible/images/shark4.jpg' %}" width="180" height="120" alt="" /></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div> <br/> 
+<!-- Footer -->
+				<section id="footer">
+					<div class="inner">
+						<!-- <header> -->
+							<!-- <h2>Get in Touch</h2> -->
+						<!-- </header> -->
+						<!-- <form method="post" action="/Users/xiejia/Desktop/finally /thanku.html"> -->
+							<!-- <div class="field half first"> -->
+								<!-- <label for="name">Name</label> -->
+								<!-- <input type="text" name="name" id="name" required/> -->
+							<!-- </div> -->
+							<!-- <div class="field half"> -->
+								<!-- <label for="email">Email</label> -->
+								<!-- <input type="text" name="email" id="email" required /> -->
+							<!-- </div> -->
+							<!-- <div class="field"> -->
+								<!-- <label for="message">Message</label> -->
+								<!-- <textarea name="message" id="message" rows="6"></textarea> -->
+							<!-- </div> -->
+							<!-- <ul class="actions"> -->
+									<!-- <li><input type="submit" value="Send Message" class="alt" /></li> -->
+								<!-- </ul> -->
+						<!-- </form> -->
+
+						<div class="copyright">
+							&copy; Aqua Wizards 2020
+						</div>
+					</div>
+				</section>
+
+</body>
+</html>

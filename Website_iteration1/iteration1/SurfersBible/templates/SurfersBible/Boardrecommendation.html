@@ -1,0 +1,181 @@
+
+<html>
+	<head>
+		<title>page</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/Users/xiejia/Desktop/finally /assets/css/main.css" />
+		<link rel="stylesheet" href="/Users/xiejia/Desktop/finally /fonts1">
+<style>
+h2{
+	color: #107fc9;
+	text-align: center;
+}
+	h3{
+		color: #107fc9;
+		text-align: center;
+	}
+	p{
+		color: black;
+		text-align: center;
+	}
+/* submit bottom with board recommed*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  margin: auto;
+  padding: 60px;
+  border: 1px solid #888;
+  width: 50%;
+}
+/* The Close Button */
+.close {
+  color: red;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+</style>
+		</head>
+		<body>
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">SURFERS' BIBLE</a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="/Users/xiejia/Desktop/finally /beaches/shark.html">Explore Beaches </a>
+						<a href="/Users/xiejia/Desktop/finally /feedback.html">Emergency Support</a>
+						<a href="/Users/xiejia/Desktop/finally /feedback.html">Surfing Guideline</a>
+
+						</nav>
+					</div>
+				</header>
+				<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+				<div id="myDIV" class="header">
+					<h3 style="margin:5px">Choosing The Right Surfboard</h3>
+<p>You need to keep in mind your skill level,fitness,height and weight and wave type </p>
+				</div>
+
+		<section class="container">
+	 <div class="col-md-15 mb-15">
+				      <label for="validationTooltip04">Your Weight</label>
+				      <select class="custom-select" id="validationTooltip04" required>
+				        <option selected disabled value=""> Please select your weight range...</option>
+				        <option>35 & Under</option>
+								<option>40</option>
+								<option>45</option>
+								<option>50</option>
+									<option>55</option>
+									<option>60</option>
+									<option>65</option>
+									<option>70</option>
+									<option>75</option>
+									<option>80</option>
+									<option>85</option>
+									<option>90</option>
+									<option>100</option>
+									<option>105</option>
+									<option>110</option>
+				      </select>
+				    </div>
+
+
+						<div class="col-md-15 mb-15">
+					 						<label for="validationTooltip04">Your Age</label>
+					 						<select class="custom-select" id="validationTooltip04" required>
+					 							<option selected disabled value="">	Please select your age...</option>
+					 							<option>0-30</option>
+					 							<option>31-50</option>
+					 							<option>51-60</option>
+					 							<option>61+</option>
+					 						</select>
+					 					</div>
+
+										<div class="col-md-15 mb-15">
+															<label for="validationTooltip04">Fitness Level</label>
+															<select class="custom-select" id="validationTooltip04" required>
+																<option selected disabled value="">	Please select your fitness level...</option>
+																<option>Excellent- Surfing 4 times per week or other training 4 times per week</option>
+																<option>Good- Surfing 3 times per week or other training 3 times per week</option>
+																<option>Average-   Surfing 2 times per week or other training 2 times per week</option>
+																<option>Poor- Surfing 1   times per week or other training 1 times per week</option>
+															</select>
+														</div>
+
+														<div class="col-md-15 mb-15">
+																			<label for="validationTooltip04">Surfers Skills</label>
+																			<select class="custom-select" id="validationTooltip04" required>
+																				<option selected disabled value="">Please select your surfing level...</option>
+																				<option>Advanced + :Capable of making critical manoeuvres with total control, power, and speed. </option>
+																				<option>Advance :Capable of completing complex manoeuvres with confidence, control, and consistency. </option>
+																				<option>Intermediate :Capable of linking moves whilst having confidence and understanding of each condition.</option>
+																				<option>Beginner:  You are first timers, learning to stand, focusing on wave count and have basic skills.</option>
+																			</select>
+																		</div>
+
+						<div class="col-md-3 mb-3">
+				      <label for="validationTooltip04">Waves Level</label>
+				      <select class="custom-select" id="validationTooltip04" required>
+				        <option selected disabled value="">What waves are you going to be catching?</option>
+								<option>High</option>
+				        <option>Medium</option>
+								<option>Low</option>
+				      </select>
+				  </div>
+<p></p>
+					<button id="myBtn"> Get your surfboard size!</button>
+					<div id="myModal" class="modal">
+					  <div class="modal-content">
+					    <span class="close">&times;</span>
+					    <p>board size.</p>
+					  </div>
+					</div>
+					
+					<p></p>
+<section id="footer">
+			<div class="inner">
+				<header>
+				<div class="copyright">
+					&copy; Aqua Wizards 2020
+				</div>
+			</div>
+		</section>
+ </section>
+
+	 <script>
+	 var modal = document.getElementById("myModal");
+	 var btn = document.getElementById("myBtn");
+	 var span = document.getElementsByClassName("close")[0];
+
+	 btn.onclick = function() {
+	   modal.style.display = "block";
+	 }
+	 span.onclick = function() {
+	   modal.style.display = "none";
+	 }
+
+	 window.onclick = function(event) {
+	   if (event.target == modal) {
+	     modal.style.display = "none";
+	   }
+	 }
+	 </script>
+
+
+      </body>
+      </html>

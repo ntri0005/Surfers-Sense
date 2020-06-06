@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+{% extends 'SurfersBible/fixedcontent.html' %}
+
+{% block title %}
+		SurferSense - Safe Beaches
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<br><br><br>
+
+    <div class="article-list">
+        <div class="container">
+            <!-- <div class="intro"> -->
+                <!-- <h2 class="text-center">Latest Articles</h2> -->
+            <!-- </div> -->
+            <div>
+                <div class="container-fluid" style="font-family: Montserrat, sans-serif;">
+			<div class="container-fluid" style="font-family: Montserrat, sans-serif;">
+                    <h2 style="color: rgb(94,146,198);"><em>Explore Beach Around You</em></h2>
+                    <form id="contactForm" action="shark" method="POST">
+							{% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div id="successfail"></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-4 col-md-12 col-sm-12" id="message">
+                                <h2 class="h4" style="color: rgb(94,146,198);"><i class="fa fa-map-pin"></i>&nbsp; Current Location&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small></h2>
+									<button class="btn btn-primary btn-block" id="location button" onclick="getLocation()" type="button"> Allow GPS Location </button>
+									<hr class="d-flex d-md-none">
+									<script>
+									var clicked = false;
+									var allowGeoRecall = true;
+										function checkfunc(){
+											
+											if (!clicked){
+												var form = document.getElementById("contactForm");
+												function handleForm(event) { event.preventDefault(); } 
+												form.addEventListener('submit', handleForm);
+												<!-- console.log("correct"); -->
+												alert("You have not clicked on the Allow GPS Location ");
+											}
+											else{
+												<!-- console.log("inside else") -->
+												document.getElementById("contactForm").submit();
+											}
+											<!-- else if (document.getElementById('text address').value === "") -->
+										}
+										function getLocation() {
+											clicked = true
+											if (navigator.geolocation) {
+											navigator.geolocation.getCurrentPosition(showPosition, positionError);
+											} 
+											else { 
+											<!-- console.log("Geolocation is not supported by this browser."); -->
+											}
+										}
+										function positionError() {  
+											alert("You have not allowed the location access of the site. Please change the setting and realod the page")
+										}
+
+										function showPosition(position) {
+											<!-- console.log(position.coords.latitude); -->
+											<!-- console.log(position.coords.longitude); -->
+											allowGeoRecall = false;
+											document.getElementById('latitude').value =position.coords.latitude;
+											document.getElementById('longitude').value =position.coords.longitude;
+											document.getElementById('location button').insertAdjacentHTML('beforeend','&#x2714;');
+										}
+									</script>
+                                <hr class="d-flex d-md-none">
+                            </div>
+                            <div class="col">
+                                <h2 class="h4" style="color: rgb(94,146,198);"><i class="fa fa-calendar"></i>&nbsp;Preferred Day&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small>
+                                </h2>
+                                <div class="form-row">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                              {% if post_date == 'Today' %}  
+														<div class="input-group-prepend"></div><select class="form-control" id="from-calltime" name="call time" onchange="getdate();"><optgroup label="Select day"><option value="Today" selected="">Today</option><option value="Tomorrow">Tomorrow</option><option value="Day After Tomorrow">Day After Tomorrow</option></optgroup></select></div>
+													 {% elif post_date == 'Tomorrow' %}
+														<div class="input-group-prepend"></div><select class="form-control" id="from-calltime" name="call time" onchange="getdate();"><optgroup label="Select day"><option value="Today">Today</option><option value="Tomorrow" selected="">Tomorrow</option><option value="Day After Tomorrow">Day After Tomorrow</option></optgroup></select></div>
+													 {% elif post_date == 'Day After Tomorrow' %}	
+														<div class="input-group-prepend"></div><select class="form-control" id="from-calltime" name="call time" onchange="getdate();"><optgroup label="Select day"><option value="Today">Today</option><option value="Tomorrow">Tomorrow</option><option value="Day After Tomorrow" selected="">Day After Tomorrow</option></optgroup></select></div>
+													 {% endif %}
+												</div>
+                                    </div>
+                                </div>
+									
+									<input type="hidden" id="latitude" name="latitude" value="">
+									<input type="hidden" id="longitude" name="longitude" value="">
+									<input type="hidden" id="selected date" name="selected date" value="{{ post_date }}">
+									</div>
+									<div class="col">
+									<h2 class="h4" style="color: rgb(94,146,198);"><i class="fa fa-calendar"></i>&nbsp;Preferred Time&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small>
+									</h2>
+									<div class="slidecontainer">
+										  <input type="range" min="0" max="23" value="{{ post_hour }}" class="slider" id="myRange" name="myRange">
+										  <p>Select Hour Value: <span id="demo"></span>00 hrs</p>
+									</div>
+									</div>
+									<script>
+										var slider = document.getElementById("myRange");
+										var output = document.getElementById("demo");
+										output.innerHTML = slider.value;
+
+										slider.onchange = function() {
+										  output.innerHTML = this.value;
+										}
+										
+										function resetVal(){
+											document.getElementById("demo").innerHTML = 12;
+										}
+
+									</script>
+									<script>
+										var e = document.getElementById("from-calltime");
+										var strUser = e.options[e.selectedIndex].value;
+										function getdate(){
+											strUser = e.options[e.selectedIndex].value;
+											document.getElementById('selected date').value = strUser;
+											<!-- console.log(strUser); -->
+										}
+										document.getElementById('selected date').value = strUser;
+										<!-- console.log(strUser); -->
+									</script>
+									</div>
+                                <div class="form-group">
+                                    <div class="form-row justify-content-center">
+											
+                                        <div class="col-lg-3 col-md-6 col-sm-6"><button class="btn btn-primary btn-block" type="reset" onclick="resetVal();"><i class="fa fa-undo"></i> Reset</button></div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6"><button class="btn btn-primary btn-block" onclick="checkfunc();">Submit <i class="fa fa-chevron-circle-right"></i></button></div>
+                                    
+										</div>
+                                </div>
+                            
+                        
+                    </form>
+                </div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal1">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Contact Information</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <form id="contactForm" action="javascript:void(0);" method="get"><input class="form-control" type="hidden" name="Introduction" value="This email was sent from www.awebsite.com"><input class="form-control" type="hidden" name="subject" value="Awebsite.com Contact Form"><input class="form-control"
+                                        type="hidden" name="to" value="email@awebsite.com">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div id="successfail"></div>
+                                        </div>
+                                    </div>
+
+                                          <!-- <div class="form-group"> -->
+                                              <!-- <div class="form-row"> -->
+                                                  <!-- <div class="col"><button class="btn btn-primary btn-block" type="reset"><i class="fa fa-undo"></i> Reset</button></div> -->
+                                                  <!-- <div class="col"><button class="btn btn-primary btn-block" type="submit">Submit <i class="fa fa-chevron-circle-right"></i></button></div> -->
+                                              <!-- </div> -->
+                                          <!-- </div> -->
+                                          <hr class="d-flex d-md-none">
+                                      </div>
+                                      <!-- <div class="col-12 col-md-6"> -->
+                                          <!-- <h2 class="h4"><i class="fa fa-location-arrow"></i> Currentlocation</h2> -->
+                                          <!-- <div class="form-row"> -->
+                                              <!-- <div class="col-12"> -->
+                                              <!-- </div> -->
+                                  </div>
+                              </form>
+                          <!-- </div> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <div></div>
+            <div></div>
+			
+<br>
+            <!-- Button trigger modal -->
+            <button type="button" id="myBtn1" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModalScrollable">
+              Understand Recommendation Scores <i class="fa fa-info-circle" style="font-size:30px;"></i>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content" style="width: 100%; padding: 10px;">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">INFORMATION </h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                      <!-- <span class="close" aria-hidden="true" style="float: right; text-align: right">&times;</span> -->
+                    <!-- </button> -->
+						
+                  </div>
+                  <div class="modal-body">
+				  <p style="color: #255d90;"><strong>Shark Attack Probability: Likelihood that you may encounter shark attack where surfing is possible, on a given date and location.</strong></p>
+                <img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>  Extremely high risk <br>
+                <img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>High risk<br>
+                <img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>  Medium risk<br>
+                <img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>  Low risk<br>
+				<br><br><p style="color: #255d90;"><strong>Shark Sighting Probability: Likelihood that you may spot sharks near the shore where surfing is possible, on a given date and location.</strong></p>
+                <img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/>   > 60% probability <br>
+                <img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/> 40% - 60% probability <br>
+                <img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/>   20% - 40% probability<br>
+                <img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/> <  20% probability <br>
+
+					<br><br><p style="color: #255d90;"><strong>Required Gears : Depending on water temperature on a given date and location, we are suggesting what gears you should be wearing to have safe surfing experience and avoid sickness like Hypothermia.</strong></p>
+						<p>Full Suit + Boots + Gloves + Hood -> Water Temperature below 58 degree °F
+						<br>Full Suit + Boots -> Water Temperature between 58 °F and 63 °F
+						<br>Full Suit -> Water Temperature between 63 °F  and 68 °F
+						<br>Top + Shorts -> Water Temperature between 68 °F  and 75 °F
+						<br>Rashguard Enough -> Water Temperature above 75 °F</p>
+						
+						<br><br><p style="color: #255d90;"><strong>Wave Period: The amount of time it takes for two successive wave crests to pass through a determined point, it measures the quality of the upcoming surf session.</strong></p>
+						<p>Un-surfable -> Wave period less than 5 minutes 
+						<br>Weak -> Wave period between 5 to 8 minutes
+						<br>Average -> Wave period between 8 to 10 minutes
+						<br>Good -> Wave period between 10 to 12 minutes
+						<br>Excellent -> Wave period  above 12 minutes</p>
+						
+						<br><br><p style="color: #255d90;"><strong>Wave Height: The height of unbroken waves as they approach the beach in deep water.</strong></p>
+						<p>Ankle to Knee  -> Wave Height between 0 ft to 1 ft
+						<br>Knee to Thigh  -> Wave Height between 1 ft to 2 ft
+						<br>Thigh to Waist -> Wave Height between 2 ft to 3 ft
+						<br>Waist to Chest -> Wave Height between 3 ft to 4 ft
+						<br>Chest to Head  -> Wave Height between 4 ft to 5 ft
+						<br>Above Head     -> Wave Height above 5 ft</p>
+					<!-- </p> -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="closeBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+
+
+
+			<div class="row articles">
+				{% for beach in beaches %}
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 item justify-content-center">
+					  <div class="contain">
+							<div class="card1">
+								<div class = "front">
+									<div class="zoomin frame" style="width:100%;height:236px;border-color:white;"><img style="width:100%;height:236px;" src="/static/SurfersBible/img/beach file/{{ beach.beach_name }}.png"></div>
+									<h3 class="name" style="color: rgb(94,146,198);">{{beach.beach_name}}</h3>
+									<p class="text-left description" style="color: rgb(94,146,198); padding-left:20px;margin-top: 10px;">Distance :&nbsp;<strong>{{beach.distance}} km</strong>
+										{% for predict in prediction %}
+											{% if predict.beach_name == beach.beach_name %}
+									
+												{% if predict.shark_attack_level == 'Low' %}
+													<br>Shark Attack Probability :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>({{predict.shark_attack_percentage}}%)<br></strong>
+												{% elif predict.shark_attack_level == 'Moderately Low' %}
+													<br>Shark Attack Probability :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>({{predict.shark_attack_percentage}}%)<br></strong>
+												{% elif predict.shark_attack_level == 'Moderately High' %}
+													<br>Shark Attack Probability :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>({{predict.shark_attack_percentage}}%)<br></strong>
+												{% elif predict.shark_attack_level == 'High' %}
+													<br>Shark Attack Probability :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/><img src="{% static 'SurfersBible/img/output-onlinepngtools.png' %}"/>({{predict.shark_attack_percentage}}%)<br></strong>	
+												{% endif %}
+												{% if predict.shark_sighting_level == 'Low' %}
+													Shark Presence Probability&nbsp; :&nbsp;<strong><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/>({{predict.shark_sighting_percentage}}%)<br></strong>
+												{% elif predict.shark_sighting_level == 'Moderately Low' %}
+													Shark Presence Probability&nbsp; :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/>({{predict.shark_sighting_percentage}}%)<br></strong>
+												{% elif predict.shark_sighting_level == 'Moderately High' %}
+													Shark Presence Probability&nbsp; :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/>({{predict.shark_sighting_percentage}}%)<br></strong>
+												{% elif predict.shark_sighting_level == 'High' %}
+													Shark Presence Probability&nbsp; :&nbsp;<strong>&nbsp;</strong>&nbsp;<strong><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/><img src="https://img.icons8.com/material-two-tone/24/000000/shark.png"/>({{predict.shark_sighting_percentage}}%)<br></strong>	
+												{% endif %}
+												<p class="text-left description" style="color: rgb(94,146,198); padding-left:20px;margin-top: 10px;">Air Temperature&nbsp; : <strong>{{beach.airtemperature}} C</strong></p>
+												<p class="text-left description" style="color: rgb(94,146,198); padding-left:20px;margin-top: 10px;">Required Gears&nbsp; : <strong>{{beach.equipment_list}}</strong></p>
+												<!-- <p class="text-left description" style="color: rgb(94,146,198); padding-left:20px;margin-top: 10px;">Water Quality(ph level)&nbsp; : <strong>{{beach.water_quality}}</strong></p></p> -->
+									<!-- <br>Shark Attack :&nbsp;<strong>&nbsp;</strong><i class="fa fa-smile-o" style="color: rgb(195,133,11);font-size: 26;"></i>&nbsp;<strong>{{predict.shark_attack_level}}</strong><br>Shark Present Probability&nbsp; :&nbsp;<strong>{{predict.shark_sighting_level}}</strong><br>Nearest -->
+										<!-- Hospital&nbsp; : <strong>60KM</strong>&nbsp;<br>Today's Temputure : <strong>20c&nbsp;</strong><br>Tide: <strong>Low&nbsp;</strong></p> -->
+											{% endif %}
+										{% endfor %}
+									<!-- <div class="btn-toolbar" > -->
+										<!-- <div class="btn-group" role="group"> -->
+											<!-- <button class="btn btn-primary" type="submit" style="background-color: rgb(105,152,201);opacity: 0.73;"><a href="http://maps.google.co.uk/maps?daddr={{ beach.latitude }},{{ beach.longitude }}" style="color: rgb(232,235,238);">Direction</a>&nbsp;</button> -->
+											<!-- <button id = "flip" class="btn btn-primary" style="background-color: rgb(86,160,102);opacity: 0.73;filter: blur(0px) brightness(109%) contrast(120%) grayscale(36%) hue-rotate(0deg) invert(0%) saturate(109%) sepia(0%);">&nbsp;&nbsp;&nbsp;Details&nbsp;&nbsp;&nbsp;</button> -->
+										<!-- </div> -->
+										<!-- <div class="btn-group" role="group"></div> -->
+									<!-- </div> -->
+								</div>
+								<div class="back">
+									<p class="text-center description" style="color: rgb(94,146,198); padding-left:20px;"><br>Wave Period:&nbsp;<strong>&nbsp;</strong><strong>{{beach.wave_period}}</strong>
+									<br>Wave Height&nbsp; :&nbsp;<strong>{{beach.wave_height}}</strong>
+									<br>Sunrise&nbsp; :&nbsp;<strong>{{beach.sunrise}}</strong>
+									<br>Sunset&nbsp; :&nbsp;<strong>{{beach.sunset}}</strong></p>
+
+									<table id="t01">
+									  <tr>
+										<th>Tide Type</th>
+										<th>Tide Height (in meters)</th> 
+										<th>Time</th>
+									  </tr>
+									  <tr>
+										<td>HIGH</td>
+										<td>{{beach.hth.0}}</td>
+										<td>{{beach.htt.0}}</td>
+									  </tr>
+									  <tr>
+										<td>LOW</td>
+										<td>{{beach.lth.0}}</td>
+										<td>{{beach.ltt.0}}</td>
+									  </tr>
+									  <tr>
+										<td>HIGH</td>
+										<td>{{beach.hth.1}}</td>
+										<td>{{beach.htt.1}}</td>
+									  </tr>
+									  <tr>
+										<td>LOW</td>
+										<td>{{beach.lth.1}}</td>
+										<td>{{beach.ltt.1}}</td>
+									  </tr>
+									  
+									  </table>
+									<!-- Nearest -->
+										<!-- Hospital&nbsp; : <strong>60KM</strong>&nbsp;<br>Today's Temputure : <strong>20c&nbsp;</strong><br>Tide: <strong>Low&nbsp;</strong></p> -->
+								</div>
+						    </div>
+						</div>
+						<br/>
+						<div class="btn-toolbar justify-content-center" >
+										<div class="btn-group" role="group">
+											<button class="btn btn-primary" type="submit" style="background-color: rgb(105,152,201);opacity: 0.73;width: 174.99px"><a href="https://www.google.com.au/maps?q={{ beach.beach_name }}" target="_blank" style="color: rgb(232,235,238);">Direction</a>&nbsp;</button>
+											<button id = "flip" class="btn btn-primary flip" style="background-color: rgb(86,160,102);opacity: 0.73;filter: blur(0px) brightness(109%) contrast(120%) grayscale(36%) hue-rotate(0deg) invert(0%) saturate(109%) sepia(0%);width: 174.99px">&nbsp;&nbsp;&nbsp;Beach Stats&nbsp;&nbsp;&nbsp;</button>
+										</div>
+										<div class="btn-group" role="group"></div>
+						</div>
+				</div>
+				{% endfor %}
+        </div>
+    </div>
+    </div>
+	<script>
+		var modal = document.getElementById("myModal");
+		var btn = document.getElementById("myBtn1");
+		var cbtn = document.getElementById("closeBtn");
+		var span = document.getElementsByClassName("close")[0];
+		btn.onclick = function() {
+			modal.style.display = "block";}
+		span.onclick = function() {
+			modal.style.display = "none";}
+		cbtn.onclick = function() {
+			modal.style.display = "none";}
+	</script>
+	<script>
+		<!-- $('#container').on('click', '#card', function() { -->
+		<!-- $(this).toggleClass('flipped'); -->
+		<!-- }); -->
+		var card = document.getElementsByClassName('card1');
+		<!-- console.log(card) -->
+		var b = document.getElementsByClassName('btn btn-primary flip');
+		<!-- console.log(b) -->
+		b[0].addEventListener('click', function() {
+			card[0].classList.toggle('flipped');
+		}, false);
+		b[1].addEventListener('click', function() {
+			card[1].classList.toggle('flipped');
+		}, false);
+		b[2].addEventListener('click', function() {
+			card[2].classList.toggle('flipped');
+		}, false);
+		b[3].addEventListener('click', function() {
+			card[3].classList.toggle('flipped');
+		}, false);
+		b[4].addEventListener('click', function() {
+			card[4].classList.toggle('flipped');
+		}, false);
+		b[5].addEventListener('click', function() {
+			card[5].classList.toggle('flipped');
+		}, false);
+		b[6].addEventListener('click', function() {
+			card[6].classList.toggle('flipped');
+		}, false);
+		b[7].addEventListener('click', function() {
+			card[7].classList.toggle('flipped');
+		}, false);
+		b[8].addEventListener('click', function() {
+			card[8].classList.toggle('flipped');
+		}, false);
+		b[9].addEventListener('click', function() {
+			card[9].classList.toggle('flipped');
+		}, false);
+		b[10].addEventListener('click', function() {
+			card[10].classList.toggle('flipped');
+		}, false);
+		b[11].addEventListener('click', function() {
+			card[11].classList.toggle('flipped');
+		}, false);
+		b[12].addEventListener('click', function() {
+			card[12].classList.toggle('flipped');
+		}, false);
+		b[13].addEventListener('click', function() {
+			card[13].classList.toggle('flipped');
+		}, false);
+		b[14].addEventListener('click', function() {
+			card[14].classList.toggle('flipped');
+		}, false);
+		b[15].addEventListener('click', function() {
+			card[15].classList.toggle('flipped');
+		}, false);
+		b[16].addEventListener('click', function() {
+			card[16].classList.toggle('flipped');
+		}, false);
+		b[17].addEventListener('click', function() {
+			card[17].classList.toggle('flipped');
+		}, false);
+		b[18].addEventListener('click', function() {
+			card[18].classList.toggle('flipped');
+		}, false);
+		b[19].addEventListener('click', function() {
+			card[19].classList.toggle('flipped');
+		}, false);
+	</script>
+	
+    <main class="page"></main>
+	<p>Disclaimer: Even though our analysis for predicting shark attack and sighting probability score is based on historical data, there can be shark attacks on account of unpredictability associated with sharks and aqua wizards hold no responsibility for any sort of misfortune that can happen at the beach.</p>
+ {% endblock %}

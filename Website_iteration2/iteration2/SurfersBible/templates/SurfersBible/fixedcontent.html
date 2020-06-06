@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	{% load static %}
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'SurfersBible/img/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'SurfersBible/img/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'SurfersBible/img/favicon-16x16.png' %}">
+	<link rel="manifest" href="{% static 'SurfersBible/img/site.webmanifest' %}">
+	<link rel="mask-icon" href="{% static 'SurfersBible/img/safari-pinned-tab.svg' %}" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>
+		{% block title %}
+		SurfersSense - Welcome
+		{% endblock %}
+	</title>
+    <link rel="stylesheet" href="{% static 'SurfersBible/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akronim">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allura">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="{% static 'SurfersBible/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Articale-List-With-Image-Zoom.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Article-Cards.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Article-List.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/best-carousel-slide.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Bold-BS4-CSS-Image-Slider.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/card-3-column-animation-shadows-images.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Card-slider-sk.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Contact-Form-v2-Modal--Full-with-Google-Map.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Map-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Mega-Menu-Dropdown-100-Editable---Ambrodu.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Navbar-Fixed-Side.css' %}">
+    <link rel="stylesheet" href="{% static 'SurfersBible/css/Pretty-Footer.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<style >
+
+
+    .lanren {
+    	margin: 20px auto;
+    	width: 100%;
+    	text-align: center;
+        height: 0px;
+        line-height: 40px;
+        border: 1px solid #fff;
+        border-radius: 2px;
+    }
+    .lanren:hover {
+    	animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    	transform: translate3d(0, 0, 0);
+    	backface-visibility: hidden;
+    	perspective: 1000px;
+    }
+    @keyframes shake {
+    	10%, 90% {
+    		transform: translate3d(-1px, 0, 0);
+    	}
+    	20%, 80% {
+    		transform: translate3d(2px, 0, 0);
+    	}
+    	30%, 50%, 70% {
+    		transform: translate3d(-4px, 0, 0);
+    	}
+    	40%, 60% {
+    		transform: translate3d(4px, 0, 0);
+    	}
+    }
+	
+	
+	.modal-content .close { float: right }
+	
+    /* checkbox */
+    .checkbox input:checked {
+        border-color: red;
+        background-color:red;
+    }
+
+    .title-arch {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 22px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    }
+    .project {
+    width: 100%;
+    height: 500px;
+    background-image: url(https://images.unsplash.com/photo-1515006038059-dfb7ba76e276?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+    background-size: cover;
+    background-position: center;
+    padding: 0 !important;
+    float:left;
+    }
+
+    .project-2 {
+    background-image: url(https://images.unsplash.com/photo-1539500541744-338f1eea4e59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80);
+    }
+
+    .project-3 {
+    background-image: url(https://images.unsplash.com/photo-1515061942942-2fb5aa4d63c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+    }
+
+    .project-4 {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/57/Web_Summit_2016_-_Surf_Summit_DSC01440_%2830537874100%29.jpg);
+    }
+    .project-5 {
+    background-image: url(https://live.staticflickr.com/395/31625323722_f7eb4868ff_b.jpg);
+    }
+
+    .project-6 {
+    background-image: url(https://www.surfertoday.com/images/stories/thebootsgloveshoods.jpg);
+    }
+
+    .project-7 {
+    background-image: url(https://www.theladders.com/wp-content/uploads/sunscreen_190507-1000x563.jpg);
+    }
+    .project-8 {
+    background-image: url(https://i1.pickpik.com/photos/829/244/867/ocean-surfer-wetsuit-water-thumb.jpg);
+    }
+
+    .project-hover {
+    width: 100%;
+    height: 100%;
+    color: white;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: rgba(66, 179, 245,0.8);
+    padding: 40% 30px !important;
+    }
+
+    .project-hover hr {
+    height: 30px;
+    width: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: rgba(255, 255, 255, 1);
+    border: 0;
+    }
+
+    .project-hover a {
+    color: rgba(255, 255, 255, 1);
+    padding: 2px 22px;
+    line-height: 40px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    }
+
+    .project-hover a:hover {
+    border-color: rgba(51, 51, 51, 1);
+    color: rgba(51, 51, 51, 1);
+    background-color: #FFF;
+    }
+
+    .project:hover .project-hover {
+    opacity: 1;
+    }
+
+    .project:hover .project-hover hr {
+    width: 100%;
+    height: 5px;
+    }
+
+/*  .icon{
+    position: absolute;
+left: 50%;
+top: 92%;
+width: 100%;
+text-align: center;
+font-size: 20px;
+    }*/
+
+    #but {
+
+        bottom: 0;
+        width: 100%;
+    }
+    #center {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    /* The Modal (background) */
+    .modal {
+  display: none; /* Hidden by default */
+  position: center; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: blue; /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #blue;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+			.slidecontainer {
+		  width: 100%;
+		}
+
+		.slider {
+		  -webkit-appearance: none;
+		  width: 100%;
+		  height: 15px;
+		  border-radius: 5px;
+		  background: #d3d3d3;
+		  outline: none;
+		  opacity: 0.7;
+		  -webkit-transition: .2s;
+		  transition: opacity .2s;
+		}
+
+		.slider:hover {
+		  opacity: 1;
+		}
+
+		.slider::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		  appearance: none;
+		  width: 25px;
+		  height: 25px;
+		  border-radius: 50%;
+		  background: #007bff;
+		  cursor: pointer;
+		}
+
+	.contain {
+		  background-color: transparent;
+		  width: inherit;
+		  height: 500px;
+		  perspective: 1000px;
+		  border-radius: 5px;
+		}
+
+	.card1 {
+	  position: relative;
+	  width: 100%;
+	  height: 100%;
+	  text-align: center;
+	  transition: transform 0.6s;
+	  transform-style: preserve-3d;
+	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	}
+
+	.card1.flipped  {
+	  transform: rotateY(180deg);
+	}
+
+	.card1 .front, .card1 .back {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	}
+
+	.card1 .front {
+	  background-color: white;
+	  color: black;
+	}
+
+	.card1 .back {
+	  background-color: white;
+	  color: white;
+	  transform: rotateY(180deg);
+	}
+	.slidecontainer {
+	  width: 100%;
+	}
+
+	.slider {
+	  -webkit-appearance: none;
+	  width: 100%;
+	  height: 15px;
+	  border-radius: 5px;
+	  background: #d3d3d3;
+	  outline: none;
+	  opacity: 0.7;
+	  -webkit-transition: .2s;
+	  transition: opacity .2s;
+	}
+
+	.slider:hover {
+	  opacity: 1;
+	}
+
+	.slider::-webkit-slider-thumb {
+	  -webkit-appearance: none;
+	  appearance: none;
+	  width: 25px;
+	  height: 25px;
+	  border-radius: 50%;
+	  background: #007bff;
+	  cursor: pointer;
+	}
+	table {
+		margin: 20px;
+		border-radius: 0.25rem;
+		width: 88%;
+		height: 65%;
+	}
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+	th, td {
+	  padding: 5px;
+	  text-align: center;
+	}
+	table#t01 tr:nth-child(even) {
+	  background-color: #eee;
+	  color: black;
+	}
+	table#t01 tr:nth-child(odd) {
+	 background-color: #fff;
+	 color: black;
+	}
+	table#t01 th {
+	  background-color: black;
+	  color: white;
+	}
+	
+	.collapsible {
+  background-color: rgb(37, 93, 144);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: ;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  width: 100%;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: f1f1f1;
+}
+
+  </style>
+</head>
+
+<body style="background-color: rgb(251,251,251);">
+  <nav class="navbar navbar-light navbar-expand-sm fixed-top bg-white text-monospace clean-navbar">
+      <div class="container"><a class="navbar-brand logo" href="index" style="color: rgba(13,75,132,0.9);font-family: Aclonica, sans-serif;"><strong>SURFERS' SENSE</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+          <div
+              class="collapse navbar-collapse" id="navcol-1">
+              <ul class="nav navbar-nav ml-auto">
+					<li class="nav-item" role="presentation"><a class="nav-link active" href="shark" style="color: rgba(13,75,132,0.9);">Explore Beach</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="board" style="color: rgba(13,75,132,0.9);">SURFING GEARS</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="news" style="color: rgba(13,75,132,0.9);">Surfing News </a></li>
+					   <li class="nav-item" role="presentation"><a class="nav-link active" href="emergency" style="color: rgba(13,75,132,0.9);">Emergency Service</a></li>
+              </ul>
+      </div>
+      </div>
+  </nav>
+  
+  {% block content %}
+  {% endblock %}
+<footer style="background-color: rgba(13,75,132,0.9);">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 footer-navigation">
+            <h3><a href="index">Aqua<span style="color: rgb(15,13,147);">Wizards</span></a></h3>
+            <p class="company-name">AquaWizards © 2020</p>
+        </div>
+        <div class="col-sm-6 col-md-4 footer-contacts">
+            <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
+                <p> Melbourne, Australia</p>
+            </div>
+            <!-- <div><i class="fa fa-envelope footer-contacts-icon"></i> -->
+                <!-- <p> <a href="/Users/xiejia/Desktop/v2 /contact-us.html" target="_blank" style="color: rgb(233,233,239);">AquaWizards@gmail.com&nbsp;</a></p> -->
+                <!-- <p class="company-name"></p> -->
+            <!-- </div> -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-4 footer-about">
+            <h4>About Us</h4>
+            <p style="color: rgb(234,237,239);"> The project team “Aqua Wizards” is a professional team of Data Scientists, Data Engineers, Business Analysts and developers founded by a group of students who are motivated to create innovative technology products to deal with issues injury around water and committed to reducing 10% surfing injury or accident in Australia per year. </p>
+        </div>
+    </div>
+</footer>
+<script>
+	var nav = document.getElementById("navcol-1"); 
+	var span = document.getElementsByClassName("navbar-toggler-icon")[0];
+	var con = true;
+	span.onclick = function() {
+		if (con === true) {
+			nav.style.display = "block";
+			con = false;
+		}
+		else if (con === false){
+			nav.style.display = "none";
+			con = true;	
+		}
+		
+	}
+</script>
+    <script src="{% static 'SurfersBible/js/jquery.min.js' %}"></script>
+    <script src="{% static 'SurfersBible/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/smart-forms.min.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/chart.min.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/bs-init.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="{% static 'SurfersBible/js/smoothproducts.min.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/theme.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/Card-slider-sk.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/Contact-Form-v2-Modal--Full-with-Google-Map.js' %}"></script>
+    <script src="{% static 'SurfersBible/js/Swiper-Slider-Card-For-Blog-Or-Product.js' %}"></script>
+</body>
+</html>

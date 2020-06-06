@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% extends 'SurfersBible/fixedcontent.html' %}
+
+{% block title %}
+		SurferSense - Provide Location
+{% endblock %}
+
+{% block content %}
+{% load static %}
+	<br><br><br>
+    <div class="article-list">
+        <div class="container">
+            <!-- <div class="intro"> -->
+                <!-- <h2 class="text-center">Latest Articles</h2> -->
+            <!-- </div> -->
+            <div>
+                <div class="container-fluid" style="font-family: Montserrat, sans-serif;">
+                    <h2 style="color: rgb(37, 93, 144);"><em>Explore Beach Around You</em></h2>
+                    <form id="contactForm" action="shark" method="POST">
+							{% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div id="successfail"></div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-4 col-md-12 col-sm-12" id="message">
+                                <h2 class="h4" style="color: rgb(37, 93, 144);font-family: Montserrat, sans-serif;"><i class="fa fa-map-marker"></i>&nbsp; <strong>Current Location</strong>&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small></h2>
+									<button class="btn btn-primary btn-block" id="location button" onclick="getLocation()" type="button"> Allow GPS Location </button>
+									<hr class="d-flex d-md-none">
+									<script>
+									var clicked = false;
+									var allowGeoRecall = true;
+										function checkfunc(){
+											<!-- console.log("inside function") -->
+											if (!clicked){
+												console.log("inside if")
+												var form = document.getElementById("contactForm");
+												function handleForm(event) { event.preventDefault(); } 
+												form.addEventListener('submit', handleForm);
+												<!-- console.log("correct"); -->
+												alert("You have not clicked on the Allow GPS Location ");
+											}
+											else{
+												<!-- console.log("inside else") -->
+												document.getElementById("contactForm").submit();
+											}
+											<!-- else if (document.getElementById('text address').value === "") -->
+										}
+										function getLocation() {
+											clicked = true
+											if (navigator.geolocation) {
+											navigator.geolocation.getCurrentPosition(showPosition, positionError);
+											} 
+											else { 
+											<!-- console.log("Geolocation is not supported by this browser."); -->
+											}
+										}
+										function positionError() {  
+											alert("You have not allowed the location access of the site. Please change the setting and realod the page")
+										}
+
+										function showPosition(position) {
+											<!-- console.log(position.coords.latitude); -->
+											<!-- console.log(position.coords.longitude); -->
+											allowGeoRecall = false;
+											document.getElementById('latitude').value =position.coords.latitude;
+											document.getElementById('longitude').value =position.coords.longitude;
+											document.getElementById('location button').insertAdjacentHTML('beforeend','&#x2714;');
+										}
+									</script>
+                                <hr class="d-flex d-md-none">
+                            </div>
+                            <div class="col">
+                                <h2 class="h4" style="color: rgb(37, 93, 144);font-family: Montserrat, sans-serif;"><i class="fa fa-calendar-check-o"></i>&nbsp;<strong>Preferred Day</strong>&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small>
+                                </h2>
+                                <div class="form-row">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"></div><select class="form-control" id="from-calltime" name="call time" onchange="getdate();"><optgroup label="Select day"><option value="Today" selected="">Today</option><option value="Tomorrow">Tomorrow</option><option value="Day After Tomorrow">Day After Tomorrow</option></optgroup></select></div>
+                                        </div>
+                                    </div>
+                                </div>
+									
+									<input type="hidden" id="latitude" name="latitude" value="">
+									<input type="hidden" id="longitude" name="longitude" value="">
+									<input type="hidden" id="selected date" name="selected date" value="">
+									</div>
+									<div class="col">
+									<h2 class="h4" style="color: rgb(37, 93, 144);"><i class="fa fa-clock-o"></i>&nbsp;<strong>Preferred Time</strong>&nbsp;<small><small class="required-input">&nbsp;(*required)</small></small>
+									</h2>
+									<div class="slidecontainer">
+										  <input type="range" min="0" max="23" value="12" class="slider" id="myRange" name="myRange">
+										  <p>Select Hour Value: <span id="demo"></span>00 hrs</p>
+									</div>
+									</div>
+									<script>
+										var slider = document.getElementById("myRange");
+										var output = document.getElementById("demo");
+										output.innerHTML = slider.value;
+
+										slider.onchange = function() {
+										  output.innerHTML = this.value;
+										}
+										
+										function resetVal(){
+											document.getElementById("demo").innerHTML = 12;
+										}
+
+									</script>
+									<script>
+										var e = document.getElementById("from-calltime");
+										var strUser = e.options[e.selectedIndex].value;
+										function getdate(){
+											strUser = e.options[e.selectedIndex].value;
+											document.getElementById('selected date').value = strUser;
+											<!-- console.log(strUser); -->
+										}
+										document.getElementById('selected date').value = strUser;
+										<!-- console.log(strUser); -->
+									</script>
+									</div>
+                                <div class="form-group">
+                                    <div class="form-row justify-content-center">
+											
+                                        <div class="col-lg-3 col-md-6 col-sm-6"><button class="btn btn-primary btn-block" type="reset" onclick="resetVal();"><i class="fa fa-undo"></i> Reset</button></div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6"><button class="btn btn-primary btn-block" onclick="checkfunc();">Submit <i class="fa fa-chevron-circle-right"></i></button></div>
+                                    
+										</div>
+                                </div>
+                            
+                        
+                    </form>
+                </div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal1">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Contact Information</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <div class="modal-body">
+                                <form id="contactForm" action="javascript:void(0);" method="get"><input class="form-control" type="hidden" name="Introduction" value="This email was sent from www.awebsite.com"><input class="form-control" type="hidden" name="subject" value="Awebsite.com Contact Form"><input class="form-control"
+                                        type="hidden" name="to" value="email@awebsite.com">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div id="successfail"></div>
+                                        </div>
+                                    </div>
+
+                                          <div class="form-group">
+                                              <div class="form-row">
+                                                  <div class="col"><button class="btn btn-primary btn-block" type="reset"><i class="fa fa-undo"></i> Reset</button></div>
+                                                  <div class="col"><button class="btn btn-primary btn-block" type="submit">Submit <i class="fa fa-chevron-circle-right"></i></button></div>
+                                              </div>
+                                          </div>
+                                          <hr class="d-flex d-md-none">
+                                      </div>
+                                      <div class="col-12 col-md-6">
+                                          <h2 class="h4"><i class="fa fa-location-arrow"></i> Currentlocation</h2>
+                                          <div class="form-row">
+                                              <div class="col-12">
+                                              </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <div></div>
+            <div></div>
+			
+    <main class="page"></main>
+	</div>
+	</div>
+ {% endblock %}

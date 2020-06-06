@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% extends 'SurfersBible/fixedcontent.html' %}
+
+{% block content %}
+{% load static %}
+    <div class="article-list"></div>
+    <main class="page landing-page">
+        <section class="clean-block clean-info dark" style="background-color: rgb(255,255,255);">
+            <div class="container">
+                <div class="block-heading">
+                    <section id="carousel">
+                        <div class="carousel slide" data-ride="carousel" id="carousel-1">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item  active">
+                                    <div class="jumbotron pulse animated hero-nature carousel-hero" style="background-image: url({% static 'SurfersBible/img/bk2.png' %});">
+                                        <h1 class="hero-title" style="color: rgb(249,252,255);">Shark Attack &amp; Sight Prediction using Machine Learning</h1>
+                                        <p class="hero-subtitle" style="color: unset;"><em>Your Safety In The Sea Is Our Priority</em></p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="jumbotron pulse animated hero-photography carousel-hero" style="background-color: rgba(13,75,132,1); background-image: url({% static 'SurfersBible/img/bk1.png' %});">
+                                        <h1 class="hero-title" style="color: rgb(255,255,255);">Victoria Beaches&nbsp;</h1>
+                                        <p class="hero-subtitle" style="color: unset;font-size: rgb(204,83,90);"><em>The Most Safety Beach List For Your Journey</em></p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="jumbotron pulse animated hero-technology carousel-hero" style="background-image: url({% static 'SurfersBible/img/Board1.png' %});">
+                                        <h1 class="hero-title" style="color: rgb(255,255,255);">Personalised Surfboard Recommendation</h1>
+                                        <p class="hero-subtitle" style="color: unset;">Recommending surfboard based on your physique and fitness parameters along with reminding your other surf gears</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+									<div class="carousel-item">
+                                    <div class="jumbotron pulse animated hero-technology carousel-hero" style="background-image: url({% static 'SurfersBible/img/news1.png' %});">
+                                        <h1 class="hero-title" style="color: rgb(255,255,255);">Tailored Australia's Surfing related News</h1>
+                                        <p class="hero-subtitle" style="color: unset;">Considering the surfers' interest, we have customised news for surfing in Australia</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+									<div class="carousel-item">
+                                    <div class="jumbotron pulse animated hero-technology carousel-hero" style="background-image: url({% static 'SurfersBible/img/forcast1.png' %});">
+                                        <h1 class="hero-title" style="color: rgb(255,255,255);">Surf Forecast Made Easy</h1>
+                                        <p class="hero-subtitle" style="color: unset;">No need to scratch your head while reading surf reports! We have made it simple for you</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev"><i class="fa fa-chevron-left"></i><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button"
+                                    data-slide="next"><i class="fa fa-chevron-right"></i><span class="sr-only">Next</span></a></div>
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-1" data-slide-to="1"></li>
+                                <li data-target="#carousel-1" data-slide-to="2"></li>
+									<li data-target="#carousel-1" data-slide-to="3"></li>
+									<li data-target="#carousel-1" data-slide-to="4"></li>
+                            </ol>
+                        </div>
+                    </section>
+                    <!--<h4 class="hero-title" style="color: rgba(13,75,132,1);">Support Service</h4> -->
+<p style="color: rgba(13,75,132,0.9);font-size: 16;">&nbsp;<strong> &nbsp; &nbsp;</strong><i class="fa fa-hand-o-down" style="margin-top: 2%;font-size:40px;color: rgba(136,7,7,0.9);"></i><strong>&nbsp;</strong>
+  <div class="lanren">
+                    <button  id="myBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Are you ready to surf? Click here to know more !
+            </button>
+  </div>​
+            <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">How good are you at catching the waves?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span class="close" id="dynamic" aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+
+                  <div class="modal-body">
+                   If you have no idea about your surfing equipments, don't worry ! We will help you in the process!
+                  </div>
+
+                  <div class="modal-footer">
+                    <a href="shark"><button type="button" class="btn btn-secondary">Experienced Surfer</button></a>
+                  <a href="board"> <button type="button" class="btn btn-primary">Amateur Surfer</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  </p>
+                </div>
+            </div>
+            <div></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 justify-content-center"><a href="shark"><img class="img-fluid" src="{% static 'SurfersBible/img/shark.jpg' %}" style="width: 550px;height: 325px;"></a>
+                        <h3 class="name" style="color: rgb(22,85,149);font-size: 20;">Shark Attack Forecast/Shark Activity Forecast</h3>
+                        <p class="description" style="">We provide 3 days of&nbsp; shark attack and&nbsp; presence likelihood based on the historical global shark attack and 15 other key factors including climatic conditions, tidal behaviours, local terrain.</p></div>
+
+                    <div
+                        class="col-xs-12 col-sm-12 col-md-6 col-lg-6 justify-content-center" style="font-size: 14;"><a href="board"><img class="img-fluid" src="{% static 'SurfersBible/img/surfbpard.png' %}" style="width: 550px;height: 325px;"></a>
+                        <h3 class="name" style="color: rgb(22,85,149);">Surfing Preparedness</h3>
+                        <p class="description" style="">We provide a basic surfboard guideline and checklist to ensure your safety during surfing. These will save your time and money by eliminating unnecessary mistakes.</p></div>
+                    </div><div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 justify-content-center"><a href="news"><img class="img-fluid" src="{% static 'SurfersBible/img/news4.jpg' %}" style="width: 550px;height: 325px;"></a>
+                        <h3 class="name" style="color: rgb(22,85,149);">Australia's Surfing News</h3>
+                        <p class="description" style="">Latest updates, events and incidents from beaches all around Australia tailored to surfing enthusiasts.<br></p></div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 justify-content-center"><a href="emergency"><img class="img-fluid" src="{% static 'SurfersBible/img/emergency.png' %}" style="width: 550px;height: 325px;"></a>
+                        <h3 class="name" style="color: rgb(22,85,149);">Emergency Service</h3>
+                        <p class="description" style="">We provide the nearest hospital recommendation not just by distance but with responsiveness score along with services it provides.<br></p></div> 
+			</div>
+            </div>
+            <div></div>
+        </section>
+    </main>
+	<script>
+		var modal = document.getElementById("myModal");
+		var btn = document.getElementById("myBtn");
+		var span = document.getElementsByClassName("close")[0];
+		btn.onclick = function() {
+			modal.style.display = "block";}
+		span.onclick = function() {
+			modal.style.display = "none";}
+	</script>
+ 
+{% endblock %} 

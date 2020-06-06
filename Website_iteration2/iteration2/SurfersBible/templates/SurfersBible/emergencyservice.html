@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'SurfersBible/fixedcontent.html' %}
+
+{% block title %}
+		SurferSense - Emergency Services
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<br><br><br>
+    <div class="map-clean">
+        <div class="container" style="background-color: #ffffff;">
+            <div class="intro">
+                <h2 class="text-center" style="color: rgb(10,72,133);">Emergency Service&nbsp;</h2>
+                <p class="text-center">We provide nearest hospital information&nbsp;</p>
+            </div>
+            <!-- <button class="collapsible">Emergency department</button> -->
+            <!-- <div class="content"> -->
+              <!-- <p>emergency department to treat urgent health problems ranging from fire and accident victims to a sudden illness</p> -->
+            <!-- </div> -->
+            <!-- <button class="collapsible">Otolaryngology </button> -->
+            <!-- <div class="content"> -->
+              <!-- <p>Otolaryngology (Ear, Nose, and Throat): The ENT Department provide comprehensive and specialized care covering both Medical and Surgical conditions related not just specifically to the Ear, Nose and Throat, but also other areas within the Head and Neck region. It is often divided into sub-specialties dealing with only one part of the traditional specialty (ontology, rhinology and laryngology)</p> -->
+            <!-- </div> -->
+            <!-- <button class="collapsible">Anesthetics</button> -->
+            <!-- <div class="content"> -->
+              <!-- <p>Anesthetics: Doctors in this department give anesthetic for operations and procedures. An anesthetic is a drug or agent that produces a complete or partial loss of feeling. There are three kinds of anesthetic: general, regional and local.</p> -->
+            <!-- </div> -->
+        </div>
+    </div>
+    <section class="clean-block clean-blog-list dark" style="background-color: rgb(254,254,254);">
+        <div class="container">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="block-content">
+                <div></div>
+				{% for hospital in hospitals %}
+                <div class="clean-blog-post">
+                    <div class="row">
+                        <div class="col-lg-5"><img class="rounded img-fluid" src="{% static 'SurfersBible/img/bk3.jpg' %}"></div>
+                        <div class="col-lg-7" style="margin-bottom:10px;">
+                            <h3><span style="text-decoration: underline;">{{hospital.hospital_name}}&nbsp;</span><br></h3>
+                            <div class="info"><span class="text-muted"><a href="#"></a></span><span class="text-muted"><i class="fa fa-location-arrow"></i>&nbsp;Address: {{hospital.hospital_formatted_address}}&nbsp; &nbsp;<a href="#"></a></span><span class="text-muted"><i class="fa fa-phone-square"></i>&nbsp; &nbsp;Phone:{{hospital.international_phone_number}}<a href="#"></a>&nbsp; &nbsp;<i class="fa fa-external-link"></i>&nbsp; &nbsp;<a href="{{ hospital.website_url }}" target="_blank">Website Link</a></span>
+                                <span
+                                    class="text-muted"><a href="#"></a></span>
+                            </div>
+                            <p style="color: rgb(160,17,35);">&nbsp;Distance: <strong>{{hospital.distance}} km&nbsp;</strong><br>&nbsp;Responsiveness score : <strong>{{hospital.emergency_cohort_percent_patient_seen_on_time}}%</strong><br>&nbsp;*Responsiveness Score: Percentage of patients seen on time by hospital in the past<br>&nbsp;Google Rating : {{hospital.rating}}/5</p><button class="btn btn-outline-primary btn-sm" type="button"><a href="{{ hospital.geo_url }}" target="_blank">Direction</a></button></div><br/>
+							
+							<button class="collapsible"><i class="fa fa-mouse-pointer" style="font-size:24px"></i>Click here to view various Services Offered</button>
+							<div class="content">
+			
+								{% for service in hospital.services %}
+							  <p><strong>{{service}}</strong></p>
+								{% endfor %}
+								<p> To know more about the various services provided by the hospitals, please visit their websites or contact them via phone.</p>
+							</div>
+					</div>
+                </div>
+				{% endfor %}
+			</div>
+		</div>
+    </section>
+    <div class="map-clean"></div>
+    <main class="page blog-post-list"></main>
+  
+    <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+ {% endblock %}
